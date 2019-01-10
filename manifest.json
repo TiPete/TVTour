@@ -1,0 +1,12 @@
+{
+    "manifest_version": 2,
+    "name": "TVTour plug-in",
+    "version": "0.1",
+    "description": "Higlight",
+    
+    "content_scripts": [{
+        "js": ["TVTour.js"],
+        "matches": ["<all_urls>"]
+    }]
+  
+}

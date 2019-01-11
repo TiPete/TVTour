@@ -4,6 +4,10 @@
     "version": "0.1",
     "description": "Higlight",
     
+    "permissions": [
+        "storage"
+    ],
+    
     "content_scripts": [{
         "js": ["TVTour.js"],
         "matches": ["<all_urls>"]

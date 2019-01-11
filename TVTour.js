@@ -1,4 +1,4 @@
-var listePierre = [
+var listePierre1 = [
 // ----- Liste  Contenus -----
     "COGIR -Jazz Lebourgneuf", 
     "COGIR -L'Oiseau Bleu",
@@ -37,6 +37,11 @@ var listePierre = [
 	"Sélection -Île des Soeurs ",
 	"Groupe Résidences LRM - Le Château Royal"
 ];
+var listPierre;
+
+chrome.storage.sync.set({key: liste}, listPierre1);
+
+ = chrome.storage.local.get(['key'], var listePierre);
 
 var idWildCard;
 if (window.location.href == "https://ru8.mpact.tv/tds/index.html") 

@@ -1,4 +1,4 @@
-var listePierre1 = [
+var listePierre = [
 // ----- Liste  Contenus -----
     "COGIR -Jazz Lebourgneuf", 
     "COGIR -L'Oiseau Bleu",
@@ -37,18 +37,21 @@ var listePierre1 = [
 	"Sélection -Île des Soeurs ",
 	"Groupe Résidences LRM - Le Château Royal"
 ];
-var listPierre;
 
-chrome.storage.sync.set({key: liste}, listPierre1);
-
- = chrome.storage.local.get(['key'], var listePierre);
 
 var idWildCard;
-if (window.location.href == "https://ru8.mpact.tv/tds/index.html") 
-	idWildCard = '[id^="webfx-tree-object"]';
-if (window.location.href == "https://ru8.mpact.tv/tds/index_library.html")
-	idWildCard = '[id^="dijit"]';
+var isIndex = false;
 
+if (window.location.href == "https://ru8.mpact.tv/tds/index.html") {
+	idWildCard = '[id^="webfx-tree-object"]';
+	isIndex = true;
+	chrome.storage.local.get(['position'], function(result) {window.scroll(0,result.position); } );
+}
+if (window.location.href == "https://ru8.mpact.tv/tds/index_library.html") {
+	idWildCard = '[id^="dijit"]';
+	idIndex = true;
+	chrome.storage.local.get(['position'], function(result) {window.scroll(0,result.position); } );
+}
 var liens= document.querySelectorAll(idWildCard);
 
 for (var i = 0; i < liens.length; i++) {
@@ -56,6 +59,10 @@ for (var i = 0; i < liens.length; i++) {
         liens[i].style.backgroundColor = "lightsteelblue";
     }
 }
+
+window.onclick = function() {
+	if (isIndex) {chrome.storage.local.set({'position': window.scrollY}); }
+};	
 
 
 // Ajouté les listes de diffusions

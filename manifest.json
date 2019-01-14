@@ -2,7 +2,7 @@
     "manifest_version": 2,
     "name": "TVTour plug-in",
     "version": "0.1",
-    "description": "Higlight",
+    "description": "Higlight-scroll",
     
     "permissions": [
         "storage"
@@ -10,7 +10,7 @@
     
     "content_scripts": [{
         "js": ["TVTour.js"],
-        "matches": ["<all_urls>"]
+        "matches": ["https://ru8.mpact.tv/tds/*"]
     }]
   
 }

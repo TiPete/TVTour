@@ -45,12 +45,12 @@ var isIndex = false;
 if (window.location.href == "https://ru8.mpact.tv/tds/index.html") {
 	idWildCard = '[id^="webfx-tree-object"]';
 	isIndex = true;
-	chrome.storage.local.get(['position'], function(result) {window.scroll(0,result.position); } );
+	chrome.storage.local.get(['position'], function(result) {window.scroll(0,result.position);} );
 }
 if (window.location.href == "https://ru8.mpact.tv/tds/index_library.html") {
 	idWildCard = '[id^="dijit"]';
 	idIndex = true;
-	chrome.storage.local.get(['position'], function(result) {window.scroll(0,result.position); } );
+	chrome.storage.local.get(['position'], function(result) {window.scroll(0,result.position);} );
 }
 var liens= document.querySelectorAll(idWildCard);
 
@@ -61,9 +61,10 @@ for (var i = 0; i < liens.length; i++) {
 }
 
 window.onclick = function() {
-	if (isIndex) {chrome.storage.local.set({'position': window.scrollY}); }
-};	
-
+	if (isIndex) {
+		chrome.storage.local.set({'position': window.scrollY}); 
+		}
+};
 
 // Ajouté les listes de diffusions
 // Ajouté la détection du mode d'affichage et l'ajustement

@@ -49,7 +49,7 @@ if (window.location.href == "https://ru8.mpact.tv/tds/index.html") {
 }
 if (window.location.href == "https://ru8.mpact.tv/tds/index_library.html") {
 	idWildCard = '[id^="dijit"]';
-	idIndex = true;
+	isIndex = true;
 	chrome.storage.local.get(['position'], function(result) {window.scroll(0,result.position); console.log('Retrieved: ' + result.position); } );
 }
 var liens= document.querySelectorAll(idWildCard);
@@ -66,6 +66,7 @@ document.body.onclick = function() {
 		chrome.storage.local.set({'position': pos}, function(){console.log('Saved: ' + pos);} ); 
 		}
 };
+
 
 // Ajouté les listes de diffusions
 // Ajouté la détection du mode d'affichage et l'ajustement

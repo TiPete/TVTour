@@ -60,7 +60,7 @@ for (var i = 0; i < liens.length; i++) {
     }
 }
 
-document.body.onclick = function() {
+window.onbeforeunload = function() {
 	if (isIndex) {
 		var pos = window.scrollY;
 		chrome.storage.local.set({'position': pos}, function(){console.log('Saved: ' + pos);} ); 

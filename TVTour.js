@@ -52,13 +52,17 @@ if (window.location.href == "https://ru8.mpact.tv/tds/index_library.html") {
 	isIndex = true;
 	chrome.storage.local.get(['position'], function(result) {window.scroll(0,result.position); console.log('Retrieved: ' + result.position); } );
 }
+
 var liens= document.querySelectorAll(idWildCard);
+
+if (isIndex && liens.length == 0) { location.reload(true); }
 
 for (var i = 0; i < liens.length; i++) {
     if (listePierre.includes(liens[i].textContent)){
         liens[i].style.backgroundColor = "lightsteelblue";
     }
 }
+
 
 window.onbeforeunload = function() {
 	if (isIndex) {

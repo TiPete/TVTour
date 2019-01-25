@@ -39,39 +39,31 @@ var listePierre = [
 ];
 
 
-var idWildCard;
-var isIndex = false;
 
-if (window.location.href == "https://ru8.mpact.tv/tds/index.html") {
-	idWildCard = '[id^="webfx-tree-object"]';
-	isIndex = true;
+switch(window.location.href){
+	case "https://ru8.mpact.tv/tds/index.html": index('[id^="webfx-tree-object"]'); break;
+	case "https://ru8.mpact.tv/tds/index_library.html": index('[id^="dijit"]'); break;
+	}
+
+function index(idWildCard){
+	
+	
 	chrome.storage.local.get(['position'], function(result) {window.scroll(0,result.position); console.log('Retrieved: ' + result.position); } );
-}
-if (window.location.href == "https://ru8.mpact.tv/tds/index_library.html") {
-	idWildCard = '[id^="dijit"]';
-	isIndex = true;
-	chrome.storage.local.get(['position'], function(result) {window.scroll(0,result.position); console.log('Retrieved: ' + result.position); } );
-}
+	
+	var liens= document.querySelectorAll(idWildCard);
+	if (liens.length == 0) { location.reload(true); }
 
-var liens= document.querySelectorAll(idWildCard);
-
-if (isIndex && liens.length == 0) { location.reload(true); }
-
-for (var i = 0; i < liens.length; i++) {
-    if (listePierre.includes(liens[i].textContent)){
-        liens[i].style.backgroundColor = "lightsteelblue";
-    }
-}
-
-
-window.onbeforeunload = function() {
-	if (isIndex) {
-		var pos = window.scrollY;
-		chrome.storage.local.set({'position': pos}, function(){console.log('Saved: ' + pos);} ); 
+	for (var i = 0; i < liens.length; i++) {
+		if (listePierre.includes(liens[i].textContent)){
+			liens[i].style.backgroundColor = "lightsteelblue";
+			}
 		}
-};
+	
+	window.onbeforeunload = function() { 
+		chrome.storage.local.set({'position': window.scrollY}, function(){console.log('Saved: ' + window.scrollY);} ); 
+		}
+
+	}
 
 
-// Ajouté les listes de diffusions
-// Ajouté la détection du mode d'affichage et l'ajustement
-// Retour au dossier ouvert
+
